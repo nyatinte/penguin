@@ -1,8 +1,52 @@
-type Book {
+scalar Date
+
+enum TodoStatus {
+  done
+  pending
+}
+
+type User {
+  id: ID!
+  name: String!
+  todos: [Todo]
+}
+
+type Todo {
+  id: ID!
+  createdAt: Date
+  updatedAt: Date
   title: String
-  author: String
+  description: String
+  status: TodoStatus!
+  user: User
+  userId: String
 }
 
 type Query {
-  books: [Book!]!
+  getUser: User
+  getTodos: [Todo]!
+  getTodoById(id: ID!): Todo
+}
+
+input AddTodoInput {
+  title: String!
+  description: String
+}
+
+input UpdateTodoInput {
+  title: String
+  description: String
+  status: TodoStatus
+}
+
+input UserInput {
+  name: String!
+}
+
+type Mutation {
+  addTodo(input: AddTodoInput!): Todo
+  updateTodo(id: ID!, input: UpdateTodoInput!): Todo
+  deleteTodo(id: ID!): Todo
+  createUser(id: ID!, input: UserInput!): User
+  updateUser(id: ID!, input: UserInput!): User
 }
