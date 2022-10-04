@@ -7,7 +7,7 @@ enum TodoStatus {
 
 type User {
   id: ID!
-  name: String!
+  name: String
   todos: [Todo]
 }
 
