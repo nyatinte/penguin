@@ -9,17 +9,24 @@ datasource db {
   referentialIntegrity = "prisma"
 }
 
-model Book {
-  id          Int    @id @default(autoincrement())
-  title       String
-  description String
-  price       Int
-  authorId    Int
-  author      Author @relation(fields: [authorId], references: [id])
+enum TodoStatus { 
+  done
+  pending
 }
 
-model Author {
-  id    Int    @id @default(autoincrement())
-  name  String
-  books Book[]
+model Todo {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String   @db.VarChar(255)
+  description String?
+  status    TodoStatus @default(pending)
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+}
+
+model User {
+  id        String   @id @unique
+  name      String?
+  todos     Todo[]
 }

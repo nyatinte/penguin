@@ -1,0 +1,12 @@
+overwrite: true
+schema: 'schema.graphql'
+generates:
+  src/generates/graphql.ts:
+    config:
+      useIndexSignature: true
+      # リゾルバーのためのContextの型をsrc/types/context.d.tsから読み込む
+      contextType: ../context#Context
+      enumAsTypes: true
+    plugins:
+      - 'typescript'
+      - 'typescript-resolvers'
