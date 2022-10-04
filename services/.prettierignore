@@ -1,0 +1,2 @@
+# prettierでフォーマットして欲しくないファイルを指定する
+# services/*/src/generates
