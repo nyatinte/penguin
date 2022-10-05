@@ -10,6 +10,11 @@ const config: CodegenConfig = {
       plugins: [],
     },
   },
+  config: {
+    scalars: {
+      Date: 'string',
+    },
+  },
 }
 
 export default config
